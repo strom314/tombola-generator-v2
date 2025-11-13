@@ -1,0 +1,100 @@
+.number-strip {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  height: 110px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  pointer-events: none;
+}
+
+@supports (mask-image: linear-gradient(black, white)) {
+  .number-strip {
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.25) 12%,
+      rgba(0, 0, 0, 0.8) 40%,
+      rgba(0, 0, 0, 0.95) 50%,
+      rgba(0, 0, 0, 0.8) 60%,
+      rgba(0, 0, 0, 0.25) 88%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.25) 12%,
+      rgba(0, 0, 0, 0.8) 40%,
+      rgba(0, 0, 0, 0.95) 50%,
+      rgba(0, 0, 0, 0.8) 60%,
+      rgba(0, 0, 0, 0.25) 88%,
+      transparent 100%
+    );
+  }
+}
+
+.number-strip::before,
+.number-strip::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+
+.number-strip::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0));
+}
+
+.number-strip::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0));
+}
+
+.number-strip-track {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  will-change: transform;
+}
+
+.number-strip-item {
+  min-width: 86px;
+  text-align: center;
+  font-size: clamp(2.6rem, 6vw, 3.4rem);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  transform: scale(0.92);
+  transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.number-strip-item.active {
+  color: #ffffff;
+  text-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+  transform: scale(1.06);
+}
+
+@media (max-width: 768px) {
+  .number-strip {
+    max-width: 90%;
+    height: 96px;
+  }
+
+  .number-strip::before,
+  .number-strip::after {
+    width: 90px;
+  }
+
+  .number-strip-item {
+    min-width: 68px;
+  }
+}

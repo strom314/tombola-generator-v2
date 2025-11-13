@@ -1,0 +1,121 @@
+.winning-list {
+  margin-top: 40px;
+  padding: 20px;
+}
+
+.winning-list h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+.empty-message {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  padding: 40px;
+}
+
+.tickets-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 120px);
+  gap: 15px;
+  max-width: 100%;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.ticket-item {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.ticket-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  pointer-events: none;
+}
+
+.ticket-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.ticket-item.color-red {
+  background: linear-gradient(135deg, #ef5350 0%, #c62828 100%);
+}
+
+.ticket-item.color-blue {
+  background: linear-gradient(135deg, #42a5f5 0%, #1565c0 100%);
+}
+
+.ticket-item.color-green {
+  background: linear-gradient(135deg, #66bb6a 0%, #2e7d32 100%);
+}
+
+.ticket-item.color-yellow {
+  background: linear-gradient(135deg, #ffca28 0%, #f57f17 100%);
+}
+
+.ticket-item.color-white {
+  background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.ticket-item-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.ticket-item-variant {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.1em;
+  /* margin-top: 5px; */
+  z-index: 1;
+}
+
+/* Special text color for white tickets in winning list */
+.ticket-item.color-white .ticket-item-number,
+.ticket-item.color-white .ticket-item-variant {
+  color: #333;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+  .tickets-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+  }
+
+  .ticket-item-number {
+    font-size: 1.5rem;
+  }
+
+  .ticket-item-variant {
+    font-size: 1rem;
+  }
+}
